@@ -1,6 +1,8 @@
 version: "3"
 services:
   python:
-    image: dionysus11/synoloty-torrent
+    image: dionysus11/synology-torrent-autodownload
     ports:
-    - "2889:2889"
+    - "20220:20220"
+    security_opt:
+      - seccomp=./chrome.json

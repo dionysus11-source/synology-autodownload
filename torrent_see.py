@@ -36,9 +36,7 @@ file_download_link = driver.find_element_by_class_name('bbs_btn1').get_attribute
 
 
 b = {'url':file_download_link}
-with open('/home/pi/flask_server/share/{}.json'.format(str(sys.argv[1])),'w',encoding='utf-8') as json_file:
+print(b)
+with open('/app/{}.json'.format(str(sys.argv[1])),'w',encoding='utf-8') as json_file:
     json.dump(b, json_file, indent = '\t')
-
-driver.close()
-
 
