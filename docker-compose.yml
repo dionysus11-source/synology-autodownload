@@ -1,0 +1,6 @@
+version: "3"
+services:
+  python:
+    image: dionysus11/synoloty-torrent
+    ports:
+    - "2889:2889"
