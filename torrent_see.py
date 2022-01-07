@@ -31,7 +31,6 @@ driver.implicitly_wait(time_to_wait=5)
 driver.get(latest_link[0].get_attribute('href'))
 
 
-
 file_download_link = driver.find_element_by_class_name('bbs_btn1').get_attribute('href')
 
 print(file_download_link)
