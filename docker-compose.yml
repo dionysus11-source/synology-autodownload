@@ -1,7 +1,7 @@
 version: "3"
 services:
   python:
-    image: dionysus11/synology-torrent-autodownload
+    image: dionysus11/synology-torrent-autodownload:0.0.2
     ports:
     - "20220:20220"
     security_opt:
