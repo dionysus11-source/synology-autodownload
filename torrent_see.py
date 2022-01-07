@@ -1,6 +1,6 @@
 from selenium import webdriver
 import sys
-import json
+import requests
 
 url = "https://www.google.com/search?q=%ED%86%A0%EB%A0%8C%ED%8A%B8%EC%94%A8"
 options = webdriver.ChromeOptions()
@@ -34,9 +34,11 @@ driver.get(latest_link[0].get_attribute('href'))
 
 file_download_link = driver.find_element_by_class_name('bbs_btn1').get_attribute('href')
 
-
-b = {'url':file_download_link}
-print(b)
-with open('/app/{}.json'.format(str(sys.argv[1])),'w',encoding='utf-8') as json_file:
-    json.dump(b, json_file, indent = '\t')
+print(file_download_link)
+res = requests.get(file_download_link)
+foldername = '/app/'
+filename = '{}.torrent'.format(keyword)
+with open(foldername+filename, 'wb') as f:
+    f.write(res.content)
+print('download success')
 
