@@ -17,28 +17,35 @@ torrentqq_url = driver.find_element_by_xpath('//*[@id="rso"]/div[1]/div/div/div/
 keyword = '놀면'
 if sys.argv[1] is not None:
     keyword = sys.argv[1]
-query = torrentqq_url.text + '/search/index?keywords='+keyword
-print(query)
-driver.get(query)
-driver.implicitly_wait(time_to_wait=5)
+query = torrentqq_url.text + "/topic/index?category1=4&category2=16&page="
 
-latest_link = driver.find_elements_by_class_name('tit')
+def check_page(url):
+    driver.get(url)
+    driver.implicitly_wait(time_to_wait=5)
+    latest_link = driver.find_elements_by_class_name('tit > a')
+    for link in latest_link:
+        if keyword in link.text:
+            print(link.text)
+            return link
 
-latest_link = driver.find_elements_by_class_name('tit > a')
-#latest_link = driver.find_elements_by_tag_name('a')
+def save_torrent_file(link):
+    driver.get(link.get_attribute('href'))
+    driver.implicitly_wait(time_to_wait=5)
+    file_download_link = driver.find_element_by_class_name('bbs_btn1').get_attribute('href')
+    res = requests.get(file_download_link)
+    foldername = '/app/'
+    filename = '{}.torrent'.format(keyword)
+    with open(foldername+filename, 'wb') as f:
+        f.write(res.content)
+    print('download success')
 
-driver.implicitly_wait(time_to_wait=5)
-driver.get(latest_link[0].get_attribute('href'))
+for i in range(1, 10):
+    checking_url = query + str(i)
+    print(checking_url)
+    link = check_page(checking_url)
+    if link is not None:
+        print("find torrent file!")
+        save_torrent_file(link)
+        break
 
-
-
-file_download_link = driver.find_element_by_class_name('bbs_btn1').get_attribute('href')
-
-print(file_download_link)
-res = requests.get(file_download_link)
-foldername = '/app/'
-filename = '{}.torrent'.format(keyword)
-with open(foldername+filename, 'wb') as f:
-    f.write(res.content)
-print('download success')
-
+driver.close()
