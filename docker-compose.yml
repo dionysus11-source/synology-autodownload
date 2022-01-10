@@ -6,3 +6,6 @@ services:
     - "20220:20220"
     security_opt:
       - seccomp=./chrome.json
+    volumes:
+    - ./CronManager.py:/app/CronManager.py
+    - ./TorrentDownloader.py:/app/TorrentDownloader.py
