@@ -44,7 +44,8 @@ class TorrentDownloader:
     def __get_torrent_site_url(self):
         self.__driver.get(TorrentDownloader.google_search_url)
         self.__driver.implicitly_wait(time_to_wait=5)
-        return self.__driver.find_element_by_xpath('//*[@id="rso"]/div[1]/div/div/div/div/div/div[1]/a/div/cite')
+        print(TorrentDownloader.google_search_url)
+        return self.__driver.find_element_by_xpath('//*[@id="rso"]/div[1]/div/div/div[1]/a/div/cite')
 
     def download_torrent_file(self):
         torrentqq_url = self.__get_torrent_site_url()
