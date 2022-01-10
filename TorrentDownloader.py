@@ -5,8 +5,8 @@ import copy
 class TorrentDownloader:
     google_search_url = "https://www.google.com/search?q=%ED%86%A0%EB%A0%8C%ED%8A%B8%EC%94%A8"
     
-    def __init__(self):
-        self.__keyword = '산다'
+    def __init__(self,keyword):
+        self.__keyword = keyword
         options = webdriver.ChromeOptions()
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
         options.add_experimental_option('useAutomationExtension', False)
@@ -16,13 +16,10 @@ class TorrentDownloader:
     
     def __del__(self):
         self.__driver.close()
-    
+        
     @property
     def keyword(self):
         return copy.deepcopy(self.__keyword)
-    @keyword.setter
-    def keyword(self, keyword):
-        self.__keyword = keyword
     
     def __search_keyword(self, url):
         self.__driver.get(url)
