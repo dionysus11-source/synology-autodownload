@@ -8,6 +8,6 @@ services:
     security_opt:
       - seccomp=./chrome.json
     volumes:
-    - ./CronManager.py:/app/CronManager.py
-    - ./TorrentDownloader.py:/app/TorrentDownloader.py
-    - ./schedule.json:/app/schedule.json
+    - ./image/CronManager.py:/app/CronManager.py
+    - ./image/TorrentDownloader.py:/app/TorrentDownloader.py
+    - ./image/schedule.json:/app/schedule.json
