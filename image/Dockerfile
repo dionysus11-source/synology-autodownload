@@ -2,6 +2,7 @@ FROM python:latest
 
 WORKDIR /app
 COPY ./ ./
+RUN chmod +x CronManager.py
 RUN mkdir -p /app/download
 RUN ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
 RUN apt-get update
