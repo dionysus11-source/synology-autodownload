@@ -3,6 +3,7 @@ FROM python:latest
 WORKDIR /app
 COPY ./ ./
 RUN mkdir -p /app/download
+RUN ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
 RUN apt-get update
 RUN apt-get install cron -y
 RUN python -m pip install --upgrade pip

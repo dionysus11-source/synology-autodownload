@@ -4,6 +4,7 @@ import schedule
 import time
 
 def download(keyword):
+    print('start download ' + keyword,flush=True)
     downloader = TorrentDownloader.TorrentDownloader(keyword)
     downloader.download_torrent_file()
 
