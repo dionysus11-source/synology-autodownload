@@ -1,2 +1,4 @@
 test.ipynb
 chromedriver.exe
+download/
+__pycache__/
