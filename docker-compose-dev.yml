@@ -1,3 +1,4 @@
+
 version: "3"
 services:
   python:
@@ -7,4 +8,6 @@ services:
     security_opt:
       - seccomp=./chrome.json
     volumes:
-    - ./download:/app/download
+    - ./CronManager.py:/app/CronManager.py
+    - ./TorrentDownloader.py:/app/TorrentDownloader.py
+    - ./schedule.json:/app/schedule.json
