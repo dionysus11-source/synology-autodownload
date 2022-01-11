@@ -1,6 +1,7 @@
 from selenium import webdriver
 import requests
 import copy
+from selenium.webdriver.common.by import By
 
 class TorrentDownloader:
     google_search_url = "https://www.google.com/search?q=%ED%86%A0%EB%A0%8C%ED%8A%B8%EC%94%A8"
@@ -45,7 +46,7 @@ class TorrentDownloader:
         self.__driver.get(TorrentDownloader.google_search_url)
         self.__driver.implicitly_wait(time_to_wait=5)
         print(TorrentDownloader.google_search_url)
-        return self.__driver.find_element_by_xpath('//*[@id="rso"]/div[1]/div/div/div[1]/a/div/cite')
+        return self.__driver.find_element(By.TAG_NAME,'cite')
 
     def download_torrent_file(self):
         torrentqq_url = self.__get_torrent_site_url()
