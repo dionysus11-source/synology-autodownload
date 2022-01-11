@@ -28,7 +28,7 @@ class TorrentDownloader:
         latest_link = self.__driver.find_elements_by_class_name('tit > a')
         for link in latest_link:
             if self.__keyword in link.text:
-                print(link.text)
+                print(link.text, flush=True)
                 return link
 
     def __save_file(self, link):
@@ -40,12 +40,12 @@ class TorrentDownloader:
         filename = '{}.torrent'.format(self.keyword)
         with open(foldername+filename, 'wb') as f:
             f.write(res.content)
-        print('download success')
+        print('download success', flush=True)
     
     def __get_torrent_site_url(self):
         self.__driver.get(TorrentDownloader.google_search_url)
         self.__driver.implicitly_wait(time_to_wait=5)
-        print(TorrentDownloader.google_search_url)
+        print(TorrentDownloader.google_search_url, flush=True)
         return self.__driver.find_element(By.TAG_NAME,'cite')
 
     def download_torrent_file(self):
@@ -53,9 +53,9 @@ class TorrentDownloader:
         query = torrentqq_url.text + "/topic/index?category1=4&category2=16&page="
         for i in range(1, 10):
             checking_url = query + str(i)
-            print(checking_url)
+            print(checking_url, flush=True)
             link = self.__search_keyword(checking_url)
             if link is not None:
-                print("find torrent file!")
+                print("find torrent file!", flush=True)
                 self.__save_file(link)
                 break
