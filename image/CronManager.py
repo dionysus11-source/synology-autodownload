@@ -7,7 +7,7 @@ def download(keyword):
     downloader = TorrentDownloader.TorrentDownloader(keyword)
     downloader.download_torrent_file()
 
-with open('schedule.json','r',encoding='utf-8') as f:
+with open('./download/schedule.json','r',encoding='utf-8') as f:
     json_data = json.load(f)
 
 schedule.clear()

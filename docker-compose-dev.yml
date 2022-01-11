@@ -10,4 +10,4 @@ services:
     volumes:
     - ./image/CronManager.py:/app/CronManager.py
     - ./image/TorrentDownloader.py:/app/TorrentDownloader.py
-    - ./image/schedule.json:/app/schedule.json
+    - ./schedule.json:/app/download/schedule.json
