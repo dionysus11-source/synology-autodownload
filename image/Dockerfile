@@ -8,9 +8,7 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
 RUN apt-get update
 RUN apt-get install cron -y
 RUN python -m pip install --upgrade pip
-RUN pip install selenium
-RUN pip install requests
-RUN pip install schedule
+RUN pip install -r requirements.txt
 RUN wget https://chromedriver.storage.googleapis.com/97.0.4692.71/chromedriver_linux64.zip
 RUN unzip chromedriver_linux64.zip
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
