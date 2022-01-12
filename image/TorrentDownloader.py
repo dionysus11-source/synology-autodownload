@@ -58,4 +58,5 @@ class TorrentDownloader:
             if link is not None:
                 print("find torrent file!", flush=True)
                 self.__save_file(link)
-                break
+                return True
+        return False

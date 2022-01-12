@@ -11,3 +11,7 @@ services:
     - ./image/CronManager.py:/app/CronManager.py
     - ./image/TorrentDownloader.py:/app/TorrentDownloader.py
     - ./schedule.json:/app/download/schedule.json
+    - ./image/run_test.py:/app/run_test.py
+    entrypoint:
+      - pytest
+      - run_test.py
