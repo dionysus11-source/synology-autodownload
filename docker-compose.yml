@@ -5,6 +5,7 @@ services:
     image: dionysus11/synology-torrent-autodownload:0.0.3
     ports:
     - "20220:20220"
+#    shm_size: "2g"
     security_opt:
       - seccomp=./chrome.json
     volumes:

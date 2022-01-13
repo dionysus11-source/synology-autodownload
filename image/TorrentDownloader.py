@@ -12,8 +12,12 @@ class TorrentDownloader:
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
         options.add_experimental_option('useAutomationExtension', False)
         options.add_argument("--disable-blink-features=AutomationControlled")
-        options.add_argument("headless")
-        self.__driver = webdriver.Chrome(executable_path='./chromedriver',options=options)
+        options.add_argument("--headless")
+        options.add_argument('--no-sandbox')
+        options.add_argument("--single-process")
+        options.add_argument("--disable-dev-shm-usage")
+        self.__driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver',options=options)
+        self.__driver = webdriver.Chrome(options=options)
     
     def __del__(self):
         self.__driver.close()
