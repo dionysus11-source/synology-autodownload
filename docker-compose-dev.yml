@@ -3,8 +3,10 @@ version: "3"
 services:
   python:
     image: dionysus11/synology-torrent-autodownload:0.0.3
+#    platform: linux/amd64
     ports:
     - "20220:20220"
+#    shm_size: "2g"
     security_opt:
       - seccomp=./chrome.json
     volumes:
