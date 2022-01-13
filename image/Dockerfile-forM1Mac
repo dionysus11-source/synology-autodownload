@@ -7,7 +7,10 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 WORKDIR /app
 COPY requirements.txt ./
-RUN pip install -r requirements.txt --no-cache-dir
 COPY . .
+RUN chmod +x CronManager.py
+RUN mkdir -p /app/download
+RUN ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
+RUN pip install -r requirements.txt --no-cache-dir
 RUN apt update -y && apt install libgl1-mesa-glx sudo chromium chromium-driver -y
 CMD [ "python", "CronManager.py"]
