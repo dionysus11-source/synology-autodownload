@@ -2,7 +2,7 @@
 version: "3"
 services:
   python:
-    image: dionysus11/synology-torrent-autodownload:0.1.0-amd64
+    image: dionysus11/synology-torrent-autodownload:0.1.2-amd64
     ports:
     - "20220:20220"
 #    shm_size: "2g"
