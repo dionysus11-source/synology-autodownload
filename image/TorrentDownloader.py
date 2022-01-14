@@ -18,7 +18,8 @@ class TorrentDownloader:
         options.add_argument("--disable-gpu")
         options.add_argument("--disable-infobars")
 
-        self.__driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver',options=options)
+       #self.__driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver',options=options)
+        self.__driver = webdriver.Chrome(executable_path='./chromedriver',options=options)
         self.__driver.set_page_load_timeout(60)
     
     def __del__(self):
@@ -42,7 +43,7 @@ class TorrentDownloader:
         self.__driver.implicitly_wait(time_to_wait=5)
         file_download_link = self.__driver.find_element_by_class_name('bbs_btn1').get_attribute('href')
         res = requests.get(file_download_link)
-        foldername = '/app/'
+        foldername = '/app/download/'
         filename = '{}.torrent'.format(self.keyword)
         with open(foldername+filename, 'wb') as f:
             f.write(res.content)
