@@ -16,8 +16,10 @@ class TorrentDownloader:
         options.add_argument('--no-sandbox')
         options.add_argument("--single-process")
         options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("--disable-gpu")
+        options.add_argument("--disable-infobars")
         self.__driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver',options=options)
-        self.__driver = webdriver.Chrome(options=options)
+        self.__driver.set_page_load_timeout(60)
     
     def __del__(self):
         self.__driver.close()
