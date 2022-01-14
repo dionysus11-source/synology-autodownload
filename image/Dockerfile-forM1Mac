@@ -12,5 +12,5 @@ RUN chmod +x CronManager.py
 RUN mkdir -p /app/download
 RUN ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
 RUN pip install -r requirements.txt --no-cache-dir
-RUN apt update -y && apt install libgl1-mesa-glx sudo chromium chromium-driver -y
+RUN apt update -y && apt install vim libgl1-mesa-glx sudo chromium chromium-driver -y
 CMD [ "python", "CronManager.py"]
