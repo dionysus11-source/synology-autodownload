@@ -10,7 +10,6 @@ class TorrentDownloader:
         self.__keyword = keyword
         options = webdriver.ChromeOptions()
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
-        options.add_experimental_option('useAutomationExtension', False)
         options.add_argument("--disable-blink-features=AutomationControlled")
         options.add_argument("--headless")
         options.add_argument('--no-sandbox')
@@ -18,6 +17,7 @@ class TorrentDownloader:
         options.add_argument("--disable-dev-shm-usage")
         options.add_argument("--disable-gpu")
         options.add_argument("--disable-infobars")
+
         self.__driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver',options=options)
         self.__driver.set_page_load_timeout(60)
     
@@ -42,7 +42,7 @@ class TorrentDownloader:
         self.__driver.implicitly_wait(time_to_wait=5)
         file_download_link = self.__driver.find_element_by_class_name('bbs_btn1').get_attribute('href')
         res = requests.get(file_download_link)
-        foldername = '/app/download/'
+        foldername = '/app/'
         filename = '{}.torrent'.format(self.keyword)
         with open(foldername+filename, 'wb') as f:
             f.write(res.content)
