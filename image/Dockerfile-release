@@ -1,0 +1,5 @@
+FROM dionysus11/synology-torrent-autodownload:chrome-base
+WORKDIR /app
+COPY ./ ./
+USER newuser
+CMD [ "python", "CronManager.py"]
