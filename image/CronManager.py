@@ -4,9 +4,9 @@ import schedule
 import time
 import datetime
 
-def download(keyword):
+def download(keyword, category):
     print('start download ' + keyword,flush=True)
-    downloader = TorrentDownloader.TorrentDownloader(keyword)
+    downloader = TorrentDownloader.TorrentDownloader(keyword, category)
     downloader.download_torrent_file()
     print('download complete ' + keyword,flush=True)
     print(datetime.datetime.now(),flush=True)
@@ -19,7 +19,7 @@ with open('./download/schedule.json','r',encoding='utf-8') as f:
 schedule.clear()
 
 for data in json_data['data']:
-    getattr(schedule.every(),data['week']).at(data['time']).do(download,data['keyword']).tag(data['name'])
+    getattr(schedule.every(),data['week']).at(data['time']).do(download,data['keyword'],data['category']).tag(data['name'])
 print(schedule.jobs,flush=True)
 print('Start scheduling',flush=True )
 while True:
