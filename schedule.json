@@ -1,6 +1,7 @@
 {
     "data" : 
-        [{"name": "놀면 뭐하니", "keyword" : "어서와", "time" : "11:33", "week" : "friday" },
-        {"name" : "나 혼자 산다", "keyword" : "산다" , "time" : "07:10", "week" : "saturday" }
+        [{"name": "놀면 뭐하니", "keyword" : "어서와", "time" : "11:33", "week" : "friday", "category" : "16" },
+        {"name" : "나 혼자 산다", "keyword" : "산다" , "time" : "07:10", "week" : "saturday", "category" : "16" },
+        {"name" : "꼬리에 꼬리를", "keyword" : "꼬리를" , "time" : "11:49", "week" : "monday", "category" : "17" }
     ]
 }
