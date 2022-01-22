@@ -62,14 +62,14 @@ class TorrentDownloader:
             f.write(res.content)
         print('download success', flush=True)
     @property
-    def __torrent_site_url(self):
+    def torrent_site_url(self):
         self.__driver.get(TorrentDownloader.google_search_url)
         self.__driver.implicitly_wait(time_to_wait=5)
         print(TorrentDownloader.google_search_url, flush=True)
         return self.__driver.find_element(By.TAG_NAME,'cite')
 
     def start(self):
-        torrentqq_url = self.__torrent_site_url
+        torrentqq_url = self.torrent_site_url
         query = torrentqq_url.text + "/topic/index?category1=4&category2={}&page=".format(self.__category)
         maximum_page = 10
         for i in range(1, maximum_page):
