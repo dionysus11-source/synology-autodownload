@@ -15,8 +15,8 @@ class TorrentDownloader:
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
 
         try:
-            self.__driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver',options=options)
-            #self.__driver = webdriver.Chrome(executable_path='./chromedriver',options=options)
+            #self.__driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver',options=options)
+            self.__driver = webdriver.Chrome(executable_path='./chromedriver',options=options)
             self.__driver.set_page_load_timeout(60)
         except:
             print('exception occured', flush=True)
