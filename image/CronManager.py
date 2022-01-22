@@ -7,7 +7,7 @@ import datetime
 def download(keyword, category):
     print('start download ' + keyword,flush=True)
     downloader = TorrentDownloader.TorrentDownloader(keyword, category)
-    downloader.download_torrent_file()
+    downloader.start()
     print('download complete ' + keyword,flush=True)
     print(datetime.datetime.now(),flush=True)
     print(schedule.jobs, flush=True)

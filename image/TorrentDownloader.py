@@ -9,18 +9,14 @@ class TorrentDownloader:
     def __init__(self,keyword, category):
         self.__keyword = keyword
         self.__category= category
-        options = webdriver.ChromeOptions()
+        arg = ["--disable-blink-features=AutomationControlled"," --headless",'--no-sandbox',
+            "--single-process", "--disable-dev-shm-usage", "--disable-gpu", "--disable-infobars"]
+        options = self.__add_argument(arg)
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
-        options.add_argument("--disable-blink-features=AutomationControlled")
-        options.add_argument("--headless")
-        options.add_argument('--no-sandbox')
-        options.add_argument("--single-process")
-        options.add_argument("--disable-dev-shm-usage")
-        options.add_argument("--disable-gpu")
-        options.add_argument("--disable-infobars")
+
         try:
-            #self.__driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver',options=options)
-            self.__driver = webdriver.Chrome(executable_path='./chromedriver',options=options)
+            self.__driver = webdriver.Chrome(executable_path='/usr/bin/chromedriver',options=options)
+            #self.__driver = webdriver.Chrome(executable_path='./chromedriver',options=options)
             self.__driver.set_page_load_timeout(60)
         except:
             print('exception occured', flush=True)
@@ -31,11 +27,21 @@ class TorrentDownloader:
             self.__driver.quit()
         except:
             print('exception occured', flush=True)
-        
+
+    def __add_argument(self,arg):
+        options = webdriver.ChromeOptions()
+        for item in arg:
+            options.add_argument(item)
+        return options
+                
     @property
     def keyword(self):
         return copy.deepcopy(self.__keyword)
     
+    @property
+    def category(self):
+        return copy.deepcopy(self.__category)
+
     def __search_keyword(self, url):
         self.__driver.get(url)
         self.__driver.implicitly_wait(time_to_wait=5)
@@ -55,17 +61,18 @@ class TorrentDownloader:
         with open(foldername+filename, 'wb') as f:
             f.write(res.content)
         print('download success', flush=True)
-    
-    def __get_torrent_site_url(self):
+    @property
+    def __torrent_site_url(self):
         self.__driver.get(TorrentDownloader.google_search_url)
         self.__driver.implicitly_wait(time_to_wait=5)
         print(TorrentDownloader.google_search_url, flush=True)
         return self.__driver.find_element(By.TAG_NAME,'cite')
 
-    def download_torrent_file(self):
-        torrentqq_url = self.__get_torrent_site_url()
+    def start(self):
+        torrentqq_url = self.__torrent_site_url
         query = torrentqq_url.text + "/topic/index?category1=4&category2={}&page=".format(self.__category)
-        for i in range(1, 10):
+        maximum_page = 10
+        for i in range(1, maximum_page):
             checking_url = query + str(i)
             print(checking_url, flush=True)
             link = self.__search_keyword(checking_url)
